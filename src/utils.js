@@ -126,7 +126,7 @@ export const formatAddress = address => {
 }
 
 export const getTotalFARMSupply = () => {
-  const earlyemissions = [57569.1, 51676.2, 26400.0, 24977.5]
+  const earlyEmissions = [57569.1, 51676.2, 26400.0, 24977.5]
   const weeksSinceLaunch = Math.floor(
     (new Date() - HARVEST_LAUNCH_DATE) / (7 * 24 * 60 * 60 * 1000),
   ) // Get number of weeks (including partial) between now, and the launch date
@@ -136,7 +136,7 @@ export const getTotalFARMSupply = () => {
     const emissionsWeek5 = 23555.0
     const emissionsWeeklyScale = 0.95554375
 
-    const totalOfEarlyEmissions = sum(earlyemissions)
+    const totalOfEarlyEmissions = sum(earlyEmissions)
 
     thisWeeksSupply =
       totalOfEarlyEmissions +
