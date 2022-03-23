@@ -134,10 +134,7 @@ const UniV3ManagedVaultActions = token => {
                   <VaultRange color="red" data-tip="" data-for="univ3-vault-currentRange">
                     <b>{range.token1Symbol}</b> : {range.lowerBound} ~ {range.upperBound}{' '}
                     <b>{range.token0Symbol}</b>
-                    <FontAwesomeIcon
-                      icon={faCheckCircle}
-                      color="red"
-                    />
+                    <FontAwesomeIcon icon={faCheckCircle} color="red"/>
                   </VaultRange>
                 </>
               )
