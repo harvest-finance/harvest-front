@@ -27,6 +27,14 @@ const VaultPanelModeSwitch = ({
 
   const isSpecialVault = token.liquidityPoolVault || token.poolVault
 
+  let withdrawalTimestamp = 0,
+  withdrawDisabled = true
+
+  if(token.captoken) {
+    withdrawalTimestamp = (token.withdrawalTimestamp && token.withdrawalTimestamp !== null) ? parseInt(token.withdrawalTimestamp) : 0
+    withdrawDisabled = Date.now() >= withdrawalTimestamp ? false : true
+  }
+
   return (
     <>
       <ReactTooltip
@@ -59,6 +67,7 @@ const VaultPanelModeSwitch = ({
               label: 'Withdraw',
               disabled:
                 !!token.disabledWithdrawTooltip ||
+                withdrawDisabled ||
                 !hasRequirementsForInteraction(
                   loaded,
                   pendingAction,

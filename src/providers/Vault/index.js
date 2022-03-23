@@ -70,6 +70,15 @@ const VaultsProvider = _ref => {
           boostedEstimatedAPY = null,
           uniswapV3PositionId = null,
           uniswapV3UnderlyingTokenPrices = [],
+          capLimit = null,
+          capToken = null,
+          capTokenSymbol = null,
+          capTokenDecimal = null,
+          depositReached = null,
+          withdrawalTimestamp = null,
+          currentCap = null,
+          ranges = [],
+          currentRange = null,
           dataFetched = false
         const isIFARM = vaultSymbol === IFARM_TOKEN_SYMBOL
         const hasMultipleAssets = isArray(importedVaults[vaultSymbol].tokenAddress)
@@ -94,6 +103,15 @@ const VaultsProvider = _ref => {
             : apiData[vaultSymbol].pricePerFullShare
           uniswapV3PositionId = apiData[vaultSymbol].uniswapV3PositionId
           uniswapV3UnderlyingTokenPrices = apiData[vaultSymbol].uniswapV3UnderlyingTokenPrices
+          capLimit = apiData[vaultSymbol].capLimit
+          capToken = apiData[vaultSymbol].capToken
+          capTokenSymbol = apiData[vaultSymbol].capTokenSymbol
+          capTokenDecimal = apiData[vaultSymbol].capTokenDecimal
+          depositReached = apiData[vaultSymbol].depositReached
+          withdrawalTimestamp = apiData[vaultSymbol].withdrawalTimestamp
+          currentCap = apiData[vaultSymbol].currentCap
+          ranges = apiData[vaultSymbol].ranges
+          currentRange = apiData[vaultSymbol].currentRange
           dataFetched = !apiFailed
         } else if (isIFARM) {
           totalSupply = await getTotalSupply(instance, web3Client)
@@ -125,6 +143,15 @@ const VaultsProvider = _ref => {
           dataFetched,
           uniswapV3UnderlyingTokenPrices,
           pool: tokenPool,
+          capLimit,
+          capToken,
+          capTokenSymbol,
+          capTokenDecimal,
+          depositReached,
+          withdrawalTimestamp,
+          currentCap,
+          ranges,
+          currentRange,
         }
       })
 

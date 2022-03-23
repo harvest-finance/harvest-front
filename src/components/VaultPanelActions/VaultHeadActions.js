@@ -55,6 +55,18 @@ const VaultHeadActions = ({
   const lpTokenBalance = get(userStats, `[${fAssetPool.id}]['lpTokenBalance']`, 0)
   const totalStaked = get(userStats, `[${fAssetPool.id}]['totalStaked']`, 0)
 
+  let maxAmount = 0,
+  depositLimit = 0,
+  currentCap = 0,
+  capDisabled = false
+
+  if(token.captoken) {
+    depositLimit = (token.capLimit && token.capLimit !== null) ? new BigNumber(token.capLimit) : 0
+    currentCap = (token.currentCap && token.currentCap !== null) ? new BigNumber(token.currentCap) : 0
+    maxAmount = depositLimit.minus(currentCap)
+    capDisabled = maxAmount > 0 ? false : true
+  }
+
   const getDepositButtonText = action => {
     switch (action) {
       case ACTIONS.DEPOSIT:
@@ -236,7 +248,8 @@ const VaultHeadActions = ({
                 ) ||
                 token.inactive ||
                 DISABLED_DEPOSITS.includes(tokenSymbol) ||
-                !hasEnoughAmountToDeposit
+                !hasEnoughAmountToDeposit ||
+                capDisabled
               }
             >
               {getDepositButtonText(pendingAction)}
