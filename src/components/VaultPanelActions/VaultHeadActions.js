@@ -56,15 +56,15 @@ const VaultHeadActions = ({
   const totalStaked = get(userStats, `[${fAssetPool.id}]['totalStaked']`, 0)
 
   let maxAmount = 0,
-  depositLimit = 0,
-  currentCap = 0,
-  capDisabled = false
+    depositLimit = 0,
+    currentCap = 0,
+    capDisabled = false
 
-  if(token.captoken) {
-    depositLimit = (token.capLimit && token.capLimit !== null) ? new BigNumber(token.capLimit) : 0
-    currentCap = (token.currentCap && token.currentCap !== null) ? new BigNumber(token.currentCap) : 0
+  if (token.captoken) {
+    depositLimit = token.capLimit && token.capLimit !== null ? new BigNumber(token.capLimit) : 0
+    currentCap = token.currentCap && token.currentCap !== null ? new BigNumber(token.currentCap) : 0
     maxAmount = depositLimit.minus(currentCap)
-    capDisabled = maxAmount > 0 ? false : true
+    capDisabled = !(maxAmount > 0)
   }
 
   const getDepositButtonText = action => {

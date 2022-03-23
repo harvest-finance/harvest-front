@@ -220,7 +220,7 @@ const VaultPanelActions = ({
     ...props,
   }
 
-  if(type === PANEL_ACTIONS_TYPE.UNIV3MANAGED) {
+  if (type === PANEL_ACTIONS_TYPE.UNIV3MANAGED) {
     return <UniV3ManagedVaultActions {...token} />
   }
 

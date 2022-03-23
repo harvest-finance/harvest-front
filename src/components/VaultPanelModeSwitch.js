@@ -28,11 +28,14 @@ const VaultPanelModeSwitch = ({
   const isSpecialVault = token.liquidityPoolVault || token.poolVault
 
   let withdrawalTimestamp = 0,
-  withdrawDisabled = true
+    withdrawDisabled = true
 
-  if(token.captoken) {
-    withdrawalTimestamp = (token.withdrawalTimestamp && token.withdrawalTimestamp !== null) ? parseInt(token.withdrawalTimestamp) : 0
-    withdrawDisabled = Date.now() >= withdrawalTimestamp ? false : true
+  if (token.captoken) {
+    withdrawalTimestamp =
+      token.withdrawalTimestamp && token.withdrawalTimestamp !== null
+        ? parseInt(token.withdrawalTimestamp, 10)
+        : 0
+    withdrawDisabled = !(Date.now() >= withdrawalTimestamp)
   }
 
   return (
