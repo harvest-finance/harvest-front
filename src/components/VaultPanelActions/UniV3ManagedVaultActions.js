@@ -19,7 +19,7 @@ const UniV3ManagedVaultActions = token => {
   const depositLimit = new BigNumber(token.capLimit)
   const currentCap = new BigNumber(token.currentCap)
   let maxAmount = 0,
-  lockedDate = new Date(parseInt(token.withdrawalTimestamp, 10) * 1000)
+    lockedDate = new Date(parseInt(token.withdrawalTimestamp, 10) * 1000)
   maxAmount = depositLimit.minus(currentCap)
   lockedDate = `${lockedDate.getUTCFullYear()}-${`0${lockedDate.getUTCMonth()}`.slice(
     -2,
