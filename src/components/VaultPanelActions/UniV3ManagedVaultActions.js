@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fromWei } from '../../services/web3'
 import { Monospace } from '../GlobalStyle'
@@ -134,6 +134,10 @@ const UniV3ManagedVaultActions = token => {
                   <VaultRange color="red" data-tip="" data-for="univ3-vault-currentRange">
                     <b>{range.token1Symbol}</b> : {range.lowerBound} ~ {range.upperBound}{' '}
                     <b>{range.token0Symbol}</b>
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      color="red"
+                    />
                   </VaultRange>
                 </>
               )
