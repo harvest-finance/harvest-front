@@ -28,14 +28,13 @@ const VaultPanelModeSwitch = ({
   const isSpecialVault = token.liquidityPoolVault || token.poolVault
 
   let withdrawalTimestamp = 0,
-    withdrawDisabled = true
+    timeLimited = true
 
-  if (token.captoken) {
-    withdrawalTimestamp =
-      token.withdrawalTimestamp && token.withdrawalTimestamp !== null
-        ? parseInt(token.withdrawalTimestamp, 10)
-        : 0
-    withdrawDisabled = !(Date.now() >= withdrawalTimestamp)
+  if (token.uniswapV3MangedData.capToken) {
+    withdrawalTimestamp = token.uniswapV3MangedData.withdrawalTimestamp
+      ? parseInt(token.uniswapV3MangedData.withdrawalTimestamp, 10)
+      : 0
+    timeLimited = !(Date.now() >= withdrawalTimestamp)
   }
 
   return (
@@ -70,7 +69,7 @@ const VaultPanelModeSwitch = ({
               label: 'Withdraw',
               disabled:
                 !!token.disabledWithdrawTooltip ||
-                withdrawDisabled ||
+                timeLimited ||
                 !hasRequirementsForInteraction(
                   loaded,
                   pendingAction,

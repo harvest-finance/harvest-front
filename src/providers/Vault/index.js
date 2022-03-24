@@ -7,6 +7,7 @@ import React, {
   useRef,
   useMemo,
 } from 'react'
+import BigNumber from 'bignumber.js'
 import { forEach } from 'promised-loops'
 import axios from 'axios'
 import { get, pickBy, merge, isArray } from 'lodash'
@@ -70,15 +71,7 @@ const VaultsProvider = _ref => {
           boostedEstimatedAPY = null,
           uniswapV3PositionId = null,
           uniswapV3UnderlyingTokenPrices = [],
-          capLimit = null,
-          capToken = null,
-          capTokenSymbol = null,
-          capTokenDecimal = null,
-          depositReached = null,
-          withdrawalTimestamp = null,
-          currentCap = null,
-          ranges = [],
-          currentRange = null,
+          uniswapV3MangedData = {},
           dataFetched = false
         const isIFARM = vaultSymbol === IFARM_TOKEN_SYMBOL
         const hasMultipleAssets = isArray(importedVaults[vaultSymbol].tokenAddress)
@@ -103,15 +96,20 @@ const VaultsProvider = _ref => {
             : apiData[vaultSymbol].pricePerFullShare
           uniswapV3PositionId = apiData[vaultSymbol].uniswapV3PositionId
           uniswapV3UnderlyingTokenPrices = apiData[vaultSymbol].uniswapV3UnderlyingTokenPrices
-          capLimit = apiData[vaultSymbol].capLimit
-          capToken = apiData[vaultSymbol].capToken
-          capTokenSymbol = apiData[vaultSymbol].capTokenSymbol
-          capTokenDecimal = apiData[vaultSymbol].capTokenDecimal
-          depositReached = apiData[vaultSymbol].depositReached
-          withdrawalTimestamp = apiData[vaultSymbol].withdrawalTimestamp
-          currentCap = apiData[vaultSymbol].currentCap
-          ranges = apiData[vaultSymbol].ranges
-          currentRange = apiData[vaultSymbol].currentRange
+          const capLimit = apiData[vaultSymbol].capLimit ? apiData[vaultSymbol].capLimit : '0'
+          const currentCap = apiData[vaultSymbol].currentCap ? apiData[vaultSymbol].currentCap : '0'
+          uniswapV3MangedData = {
+            capLimit,
+            capToken: apiData[vaultSymbol].capToken,
+            capTokenSymbol: apiData[vaultSymbol].capTokenSymbol,
+            capTokenDecimal: apiData[vaultSymbol].capTokenDecimal,
+            depositReached: apiData[vaultSymbol].depositReached,
+            withdrawalTimestamp: apiData[vaultSymbol].withdrawalTimestamp,
+            currentCap,
+            maxToDeposit: new BigNumber(capLimit).minus(new BigNumber(currentCap)),
+            ranges: apiData[vaultSymbol].ranges,
+            currentRange: apiData[vaultSymbol].currentRange,
+          }
           dataFetched = !apiFailed
         } else if (isIFARM) {
           totalSupply = await getTotalSupply(instance, web3Client)
@@ -143,15 +141,7 @@ const VaultsProvider = _ref => {
           dataFetched,
           uniswapV3UnderlyingTokenPrices,
           pool: tokenPool,
-          capLimit,
-          capToken,
-          capTokenSymbol,
-          capTokenDecimal,
-          depositReached,
-          withdrawalTimestamp,
-          currentCap,
-          ranges,
-          currentRange,
+          uniswapV3MangedData,
         }
       })
 

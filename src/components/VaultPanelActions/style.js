@@ -145,7 +145,7 @@ const RangeGroup = styled.div`
 const VaultRangeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: ${props => props.lineHeight || '16px'};
+  line-height: 16px;
 `
 
 const VaultRange = styled.span`
