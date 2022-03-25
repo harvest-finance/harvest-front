@@ -28,7 +28,7 @@ const VaultPanelModeSwitch = ({
   const isSpecialVault = token.liquidityPoolVault || token.poolVault
 
   let withdrawalTimestamp = 0,
-    timeLimited = true
+    timeLimited = false
 
   if (token.uniswapV3MangedData.capToken) {
     withdrawalTimestamp = token.uniswapV3MangedData.withdrawalTimestamp

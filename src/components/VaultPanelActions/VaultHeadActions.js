@@ -234,26 +234,16 @@ const VaultHeadActions = ({
                 )
               }}
               disabled={
-                token.uniswapV3MangedData.capToken
-                  ? !hasRequirementsForInteraction(
-                      loaded,
-                      pendingAction,
-                      vaultsData,
-                      loadingBalances,
-                    ) ||
-                    token.inactive ||
-                    DISABLED_DEPOSITS.includes(tokenSymbol) ||
-                    !hasEnoughAmountToDeposit ||
-                    capDisabled
-                  : !hasRequirementsForInteraction(
-                      loaded,
-                      pendingAction,
-                      vaultsData,
-                      loadingBalances,
-                    ) ||
-                    token.inactive ||
-                    DISABLED_DEPOSITS.includes(tokenSymbol) ||
-                    !hasEnoughAmountToDeposit
+                !hasRequirementsForInteraction(
+                  loaded,
+                  pendingAction,
+                  vaultsData,
+                  loadingBalances,
+                ) ||
+                token.inactive ||
+                DISABLED_DEPOSITS.includes(tokenSymbol) ||
+                !hasEnoughAmountToDeposit ||
+                capDisabled
               }
             >
               {getDepositButtonText(pendingAction)}
