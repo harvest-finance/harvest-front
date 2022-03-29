@@ -98,10 +98,8 @@ const VaultsProvider = _ref => {
           uniswapV3PositionId = apiData[vaultSymbol].uniswapV3PositionId
           uniswapV3UnderlyingTokenPrices = apiData[vaultSymbol].uniswapV3UnderlyingTokenPrices
           if (VAULT_CATEGORIES_IDS.UNIV3MANAGED === apiData[vaultSymbol].category) {
-            const capLimit = apiData[vaultSymbol].capLimit ? apiData[vaultSymbol].capLimit : '0'
-            const currentCap = apiData[vaultSymbol].currentCap
-              ? apiData[vaultSymbol].currentCap
-              : '0'
+            const { capLimit } = apiData[vaultSymbol]
+            const { currentCap } = apiData[vaultSymbol]
             uniswapV3MangedData = {
               capLimit,
               capToken: apiData[vaultSymbol].capToken,

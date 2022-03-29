@@ -53,7 +53,7 @@ const UniV3ManagedVaultActions = token => {
         </SelectedVaultLabel>
         <SelectedVaultNumber>
           <Monospace>
-            {token.uniswapV3MangedData.capLimit && token.uniswapV3MangedData.capLimit !== null ? (
+            {token.uniswapV3MangedData.capLimit !== '0' ? (
               fromWei(
                 token.uniswapV3MangedData.maxToDeposit,
                 token.uniswapV3MangedData.capTokenDecimal,
@@ -83,9 +83,7 @@ const UniV3ManagedVaultActions = token => {
           />
         </SelectedVaultLabel>
         <SelectedVaultNumber>
-          {token.uniswapV3MangedData.withdrawalTimestamp &&
-          token.uniswapV3MangedData.withdrawalTimestamp !== null &&
-          token.uniswapV3MangedData.withdrawalTimestamp !== '0'
+          {token.uniswapV3MangedData.withdrawalTimestamp !== '0'
             ? lockedDate
             : '1970-01-01 00:00:00.000'}
         </SelectedVaultNumber>
