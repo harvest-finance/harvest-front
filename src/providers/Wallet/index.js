@@ -126,9 +126,8 @@ const WalletProvider = _ref => {
         )
 
         if (
-          get(web3Plugin, 'currentProvider.isMetaMask') &&
-          !hasOutdatedMetaMask &&
-          !isMobileWeb3
+          get(web3Plugin, 'currentProvider.isCoinbaseWallet') ||
+          (get(web3Plugin, 'currentProvider.isMetaMask') && !hasOutdatedMetaMask && !isMobileWeb3)
         ) {
           try {
             await web3Plugin.currentProvider.request({

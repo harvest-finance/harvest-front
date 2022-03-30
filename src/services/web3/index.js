@@ -5,6 +5,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import mobile from 'is-mobile'
 import { get } from 'lodash'
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import contracts from './contracts'
 import { formatNumber } from '../../utils'
 import {
@@ -24,8 +25,12 @@ import maticLogo from '../../assets/images/logos/matic.svg'
 import { CHAINS_ID } from '../../data/constants'
 
 const providerOptions = {
-  injected: {
-    package: null,
+  walletlink: {
+    package: CoinbaseWalletSDK,
+    options: {
+      name: 'Coinbase',
+      infuraId: process.env.REACT_APP_INFURA_KEY,
+    },
   },
   walletconnect: {
     package: WalletConnectProvider,
