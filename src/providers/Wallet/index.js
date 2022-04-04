@@ -129,7 +129,8 @@ const WalletProvider = _ref => {
         )
         setAccount(null)
         if (
-          (get(web3Plugin, 'currentProvider.isMetaMask') || get(web3Plugin, 'currentProvider.isCoinbaseWallet')) &&
+          (get(web3Plugin, 'currentProvider.isMetaMask') ||
+            get(web3Plugin, 'currentProvider.isCoinbaseWallet')) &&
           !hasOutdatedMetaMask &&
           !isMobileWeb3
         ) {
