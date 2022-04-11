@@ -109,6 +109,7 @@ const UniV3ManagedVaultActions = token => {
         </SelectedVaultLabel>
         <VaultRangeContainer>
           {token.uniswapV3ManagedData.ranges.map(range => {
+            console.log(token.uniswapV3ManagedData.currentRange)
             if (range.posId === token.uniswapV3ManagedData.currentRange.posId) {
               return (
                 <>
