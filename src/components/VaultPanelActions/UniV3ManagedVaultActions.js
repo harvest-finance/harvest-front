@@ -20,11 +20,7 @@ const UniV3ManagedVaultActions = token => {
     -2,
   )}-${`0${lockedDate.getUTCDate()}`.slice(-2)} ${`0${lockedDate.getUTCHours()}`.slice(
     -2,
-  )}:${`0${lockedDate.getUTCMinutes()}`.slice(-2)}:${`0${lockedDate.getUTCSeconds()}`.slice(-2)}.${(
-    lockedDate.getUTCMilliseconds() / 1000
-  )
-    .toFixed(3)
-    .slice(2, 5)}`
+  )}:${`0${lockedDate.getUTCMinutes()}`.slice(-2)} UTC`
 
   return (
     <UniV3VaultContainer>
@@ -85,7 +81,7 @@ const UniV3ManagedVaultActions = token => {
         <SelectedVaultNumber>
           {token.uniswapV3MangedData.withdrawalTimestamp !== '0'
             ? lockedDate
-            : '1970-01-01 00:00:00.000'}
+            : 'Withdrawals are now allowed'}
         </SelectedVaultNumber>
       </SelectedVault>
       <ReactTooltip
