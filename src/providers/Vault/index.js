@@ -146,7 +146,9 @@ const VaultsProvider = _ref => {
           dataFetched,
           uniswapV3UnderlyingTokenPrices,
           pool: tokenPool,
-          subLabel,
+          subLabel: apiData[vaultSymbol].uniswapV3ManagedData
+            ? subLabel
+            : importedVaults[vaultSymbol].subLabel,
           uniswapV3ManagedData,
         }
       })
