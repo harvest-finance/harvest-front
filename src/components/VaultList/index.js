@@ -1,5 +1,16 @@
 import React, { useMemo, useRef, useState } from 'react'
-import { find, get, isArray, isEqual, keys, orderBy, sortBy, uniq } from 'lodash'
+import {
+  find,
+  get,
+  isArray,
+  isEqual,
+  keys,
+  orderBy,
+  sortBy,
+  uniq,
+  flatMapDeep,
+  toArray,
+} from 'lodash'
 import move from 'lodash-move'
 import useEffectWithPrevious from 'use-effect-with-previous'
 import ReactTooltip from 'react-tooltip'
@@ -44,6 +55,7 @@ const formatVaults = (
   sortParam,
   sortOrder,
   selectedCategory,
+  categories,
   depositedOnly,
 ) => {
   let vaultsSymbol = sortBy(keys(groupOfVaults), [
@@ -191,6 +203,10 @@ const formatVaults = (
       }
       return stringToArray(groupOfVaults[tokenSymbol].category).includes(selectedCategory)
     })
+  } else if (categories.length === 1) {
+    vaultsSymbol = vaultsSymbol.filter(
+      tokenSymbol => groupOfVaults[tokenSymbol].inactive || groupOfVaults[tokenSymbol].testInactive,
+    )
   } else if (!depositedOnly) {
     vaultsSymbol = vaultsSymbol.filter(
       tokenSymbol =>
@@ -328,6 +344,8 @@ const VaultList = ({ profitShareAPY }) => {
 
   const groupOfVaults = { ...vaultsData, ...poolVaults }
 
+  const categories = uniq(flatMapDeep(toArray(vaultsData), 'category'))
+
   const vaultsSymbol = useMemo(
     () =>
       formatVaults(
@@ -341,6 +359,7 @@ const VaultList = ({ profitShareAPY }) => {
         sortParam,
         sortOrder,
         selectedCategory,
+        categories,
         depositedOnly,
       ),
     [
@@ -354,6 +373,7 @@ const VaultList = ({ profitShareAPY }) => {
       sortParam,
       sortOrder,
       selectedCategory,
+      categories,
       depositedOnly,
     ],
   )

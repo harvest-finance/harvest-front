@@ -59,15 +59,17 @@ const QuickFilter = ({
   return (
     <QuickFilterContainer>
       <CategoriesContainer>
-        <Button
-          color={selectedCategory === null ? 'secondary' : 'info'}
-          size="sm"
-          fontWeight="500"
-          onClick={() => onCategoryClick(null)}
-          width="max-content"
-        >
-          All
-        </Button>
+        {categories.length > 1 ? (
+          <Button
+            color={selectedCategory === null ? 'secondary' : 'info'}
+            size="sm"
+            fontWeight="500"
+            onClick={() => onCategoryClick(null)}
+            width="max-content"
+          >
+            All
+          </Button>
+        ) : null}
         {categories
           .filter(categoryId => categoryId !== inactiveCategoryId)
           .map((categoryId, i) => {
@@ -87,7 +89,7 @@ const QuickFilter = ({
             }
             return null
           })}
-        {hasInactiveVaults ? (
+        {hasInactiveVaults && categories.length !== 1 ? (
           <Button
             color={selectedCategory === inactiveCategoryId ? 'secondary' : 'info'}
             size="sm"
@@ -96,6 +98,27 @@ const QuickFilter = ({
             width="max-content"
           >
             Inactive
+          </Button>
+        ) : (
+          <Button
+            color={selectedCategory !== 'All' ? 'secondary' : 'info'}
+            size="sm"
+            fontWeight="500"
+            onClick={() => onCategoryClick(inactiveCategoryId)}
+            width="max-content"
+          >
+            Inactive
+          </Button>
+        )}
+        {categories.length === 1 ? (
+          <Button
+            color={selectedCategory === 'All' ? 'secondary' : 'info'}
+            size="sm"
+            fontWeight="500"
+            onClick={() => onCategoryClick('All')}
+            width="max-content"
+          >
+            All
           </Button>
         ) : null}
       </CategoriesContainer>
