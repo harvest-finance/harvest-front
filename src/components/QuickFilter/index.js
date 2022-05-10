@@ -59,7 +59,7 @@ const QuickFilter = ({
   return (
     <QuickFilterContainer>
       <CategoriesContainer>
-        {categories.length > 1 ? (
+        {chain !== CHAINS_ID.BSC_MAINNET ? (
           <Button
             color={selectedCategory === null ? 'secondary' : 'info'}
             size="sm"
@@ -69,7 +69,17 @@ const QuickFilter = ({
           >
             All
           </Button>
-        ) : null}
+        ) : (
+          <Button
+            color={selectedCategory === 'All' ? 'secondary' : 'info'}
+            size="sm"
+            fontWeight="500"
+            onClick={() => onCategoryClick('All')}
+            width="max-content"
+          >
+            All
+          </Button>
+        )}
         {categories
           .filter(categoryId => categoryId !== inactiveCategoryId)
           .map((categoryId, i) => {
@@ -89,36 +99,19 @@ const QuickFilter = ({
             }
             return null
           })}
-        {hasInactiveVaults && categories.length !== 1 ? (
+        {hasInactiveVaults ? (
           <Button
-            color={selectedCategory === inactiveCategoryId ? 'secondary' : 'info'}
+            color={
+              selectedCategory === inactiveCategoryId || selectedCategory !== 'All'
+                ? 'secondary'
+                : 'info'
+            }
             size="sm"
             fontWeight="500"
             onClick={() => onCategoryClick(inactiveCategoryId)}
             width="max-content"
           >
             Inactive
-          </Button>
-        ) : (
-          <Button
-            color={selectedCategory !== 'All' ? 'secondary' : 'info'}
-            size="sm"
-            fontWeight="500"
-            onClick={() => onCategoryClick(inactiveCategoryId)}
-            width="max-content"
-          >
-            Inactive
-          </Button>
-        )}
-        {categories.length === 1 ? (
-          <Button
-            color={selectedCategory === 'All' ? 'secondary' : 'info'}
-            size="sm"
-            fontWeight="500"
-            onClick={() => onCategoryClick('All')}
-            width="max-content"
-          >
-            All
           </Button>
         ) : null}
       </CategoriesContainer>
