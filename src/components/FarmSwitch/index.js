@@ -17,7 +17,7 @@ const ChainImage = ({ id, label }) => {
       return <img src={bscLogo} alt={label} />
     case CHAINS_ID.MATIC_MAINNET:
       return <img src={maticLogo} alt={label} />
-    case "ARBITRUM_MAINNET":
+    case 'ARBITRUM_MAINNET':
       return <img src={arbitrumLogo} alt={label} />
     default:
       return null

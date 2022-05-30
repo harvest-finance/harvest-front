@@ -17,10 +17,10 @@ const VaultListHeader = ({ ...props }) => (
           label: 'Polygon',
         },
         {
-          id: "ARBITRUM_MAINNET",
+          id: 'ARBITRUM_MAINNET',
           label: 'Arbitrum',
           isNew: true,
-          link: "https://harvest.dolomite.io/",
+          link: 'https://harvest.dolomite.io/',
         },
         {
           id: CHAINS_ID.BSC_MAINNET,
