@@ -10,7 +10,7 @@ const VaultListHeader = ({ ...props }) => (
       chains={[
         {
           id: CHAINS_ID.ETH_MAINNET,
-          label: 'Mainnet',
+          label: 'Ethereum',
         },
         {
           id: CHAINS_ID.MATIC_MAINNET,
