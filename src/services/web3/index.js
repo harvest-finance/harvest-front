@@ -8,6 +8,8 @@ import mobile from 'is-mobile'
 import { get } from 'lodash'
 import contracts from './contracts'
 import { formatNumber } from '../../utils'
+import * as UAuthWeb3Modal from '@uauth/web3modal'
+import UAuthSPA from '@uauth/js'
 import {
   BSCSCAN_URL,
   BSC_URL,
@@ -17,12 +19,15 @@ import {
   isDebugMode,
   MATIC_URL,
   MATICSCAN_URL,
+  UNSTOPPABLE_CLIENT_ID,
+  UNSTOPPABLE_REDIRECT_URI_PRODUCTION
 } from '../../constants'
 import ethLogo from '../../assets/images/logos/eth.png'
 import bscLogo from '../../assets/images/logos/bsc.png'
 import bswLogo from '../../assets/images/logos/bsw.png'
 import maticLogo from '../../assets/images/logos/matic.svg'
 import { CHAINS_ID } from '../../data/constants'
+
 
 const providerOptions = {
   injected: {
@@ -68,6 +73,16 @@ const providerOptions = {
       return window.BinanceChain
     },
   },
+  'custom-uauth': {
+    display: UAuthWeb3Modal.display,
+    connector: UAuthWeb3Modal.connector,
+    package: UAuthSPA,
+    options: {
+      clientID: UNSTOPPABLE_CLIENT_ID,
+      redirectUri: UNSTOPPABLE_REDIRECT_URI_PRODUCTION,
+      scope: 'openid wallet'
+    }
+  }
 }
 
 const chains = {

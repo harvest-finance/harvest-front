@@ -64,6 +64,10 @@ export const INFURA_URL = `https://mainnet.infura.io/v3/${process.env.REACT_APP_
 export const BSC_URL = 'https://bsc-dataseed2.defibit.io'
 export const MATIC_URL = `https://polygon-mainnet.infura.io/v3/${process.env.REACT_APP_MATIC_INFURA_KEY}`
 
+export const UNSTOPPABLE_CLIENT_ID = process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID || '82887540-5543-4c27-aadd-f22e95a175eb'
+export const UNSTOPPABLE_REDIRECT_URI_LOCAL = 'http://localhost:3000'
+export const UNSTOPPABLE_REDIRECT_URI_PRODUCTION = 'https://harvest.finance/'
+
 export const ETHERSCAN_URL = 'https://etherscan.io'
 
 export const BSCSCAN_URL = 'https://bscscan.com'
