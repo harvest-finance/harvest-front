@@ -20,14 +20,13 @@ import {
   MATIC_URL,
   MATICSCAN_URL,
   UNSTOPPABLE_CLIENT_ID,
-  UNSTOPPABLE_REDIRECT_URI_PRODUCTION
+  UNSTOPPABLE_REDIRECT_URI_LOCAL
 } from '../../constants'
 import ethLogo from '../../assets/images/logos/eth.png'
 import bscLogo from '../../assets/images/logos/bsc.png'
 import bswLogo from '../../assets/images/logos/bsw.png'
 import maticLogo from '../../assets/images/logos/matic.svg'
 import { CHAINS_ID } from '../../data/constants'
-
 
 const providerOptions = {
   injected: {
@@ -79,7 +78,7 @@ const providerOptions = {
     package: UAuthSPA,
     options: {
       clientID: UNSTOPPABLE_CLIENT_ID,
-      redirectUri: UNSTOPPABLE_REDIRECT_URI_PRODUCTION,
+      redirectUri: UNSTOPPABLE_REDIRECT_URI_LOCAL,
       scope: 'openid wallet'
     }
   }
