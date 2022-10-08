@@ -37,6 +37,6 @@ http
     })
     res.end()
   })
-  .listen(httpPort)
+  .listen(httpPort, () => console.log(`HTTP->HTTPS Redirect is ready on port ${httpPort}`))
 
 server.listen(httpsPort, () => console.log(`Server started on port ${httpsPort}`))
