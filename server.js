@@ -10,6 +10,7 @@ const app = express()
 app.use(
   helmet({
     contentSecurityPolicy: false,
+    frameguard: false,
   }),
 )
 
