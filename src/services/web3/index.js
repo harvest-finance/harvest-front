@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
-import { LoadConnectKit } from '@ledgerhq/connect-kit-loader';
+import { LoadConnectKit } from '@ledgerhq/connect-kit-loader'
 import mobile from 'is-mobile'
 import { get } from 'lodash'
 import contracts from './contracts'
