@@ -9,7 +9,11 @@ const app = express()
 
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        frameAncestors: ['https://dapp-browser.apps.ledger.com'],
+      },
+    },
     frameguard: false,
   }),
 )
